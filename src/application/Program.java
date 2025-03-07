@@ -13,11 +13,12 @@ import chess.ChessPosition;
 public class Program {
 
 	public static void main(String[] args) {
-		ChessMatch chessMatch = new ChessMatch();
+		
 		Scanner sc = new Scanner(System.in);
+		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
 		
-		while (true) {
+		while (!chessMatch.getCheckMate()) {
 			try {
 				UI.clearScreen();
 				UI.printMatch(chessMatch, captured);
@@ -29,7 +30,6 @@ public class Program {
 				UI.clearScreen();
 				UI.printBoard(chessMatch.getPieces(), possibleMoves);
 				System.out.println();
-				
 				System.out.print("Target: ");
 				ChessPosition target = UI.readChessPosition(sc);
 				
@@ -48,6 +48,7 @@ public class Program {
 				sc.nextLine();
 			}
 		}
+		UI.clearScreen();
+		UI.printMatch(chessMatch, captured);
 	}
-
 }
